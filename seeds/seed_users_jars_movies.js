@@ -4,6 +4,7 @@
  */
 const userData = require("../seed_data/users.js");
 const movieData = require("../seed_data/movies.js");
+const jarData = require("../seed_data/jars.js");
 
 exports.seed = function (knex) {
   return knex("users")
@@ -16,5 +17,11 @@ exports.seed = function (knex) {
     })
     .then(() => {
       return knex("movies").insert(movieData);
+    })
+    .then(() => {
+      return knex("jars").del();
+    })
+    .then(() => {
+      return knex("jars").insert(jarData);
     });
 };
