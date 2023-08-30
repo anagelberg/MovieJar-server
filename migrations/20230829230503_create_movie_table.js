@@ -13,7 +13,6 @@ exports.up = function (knex) {
     table.integer("run_time").notNullable();
     table.string("genres").notNullable();
     table.string("imdb_id").notNullable();
-    table.integer("tmdb_id").notNullable();
     table.timestamp("updated_at").defaultTo(knex.fn.now());
   });
 };

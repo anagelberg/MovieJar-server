@@ -1,12 +1,12 @@
 const router = require("express").Router();
 
 const jarController = require("../controllers/jarController");
-const movieController = require("../controllers/movieController");
+// const movieController = require("../controllers/movieController");
 
 router.route("/").post(jarController.createJar);
 router.route("/:jarid").get(jarController.jarDetails);
 router.route("/:jarid/:userid").delete(jarController.removeUser);
-router.route("/:jarid/movie").post(movieController.addMovie);
-router.route("/:jarid/movie/:movieid").delete(movieController.removeMovie);
+// router.route("/:jarid/movie").post(movieController.addMovie);
+// router.route("/:jarid/movie/:movieid").delete(movieController.removeMovie);
 
 module.exports = router;
