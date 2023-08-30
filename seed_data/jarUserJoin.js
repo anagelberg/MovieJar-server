@@ -1,27 +1,27 @@
 module.exports = [
   {
     id: 1,
-    userId: 1,
-    movieJarId: 1,
+    user_id: 1,
+    jar_id: 1,
   },
   {
     id: 2,
-    userId: 1,
-    movieJarId: 2,
+    user_id: 1,
+    jar_id: 2,
   },
   {
     id: 3,
-    userId: 1,
-    movieJarId: 3,
+    user_id: 1,
+    jar_id: 3,
   },
   {
     id: 4,
-    userId: 1,
-    movieJarId: 4,
+    user_id: 1,
+    jar_id: 4,
   },
   {
     id: 5,
-    userId: 1,
-    movieJarId: 5,
+    user_id: 1,
+    jar_id: 5,
   },
 ];

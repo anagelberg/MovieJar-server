@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("movies", (table) => {
+  return knex.schema.createTable("movie", (table) => {
     table.increments("id").primary();
     table.string("title").notNullable();
     table.string("poster_url");
@@ -23,5 +23,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("movies");
+  return knex.schema.dropTable("movie");
 };

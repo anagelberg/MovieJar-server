@@ -3,15 +3,24 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("jars", (table) => {
+  return knex.schema.createTable("jar_user_join", (table) => {
     table.increments("id").primary();
-    table.string("name").notNullable();
     table
-      .integer("creator_id")
+      .integer("jar_id")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("users");
+      .inTable("jar")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
+    table
+      .integer("user_id")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("user")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
     table.timestamp("updated_at").defaultTo(knex.fn.now());
   });
 };
@@ -21,5 +30,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("jars");
+  return knex.schema.dropTable("jar_user_join");
 };
