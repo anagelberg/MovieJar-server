@@ -64,12 +64,12 @@ const jarDetails = async (req, res) => {
   } else {
     //Note of future bug: to keep more simple the user data will be the creator of the jar. If more users exist later, come back and change this to be the current user's info instead. 
     const userInfo = await knex("jar_user_join")
-      .select("user_id", "name")
+      .select("user_id as userId", "name")
       .where({ jar_id: req.params.jarid })
       .join("user", "user.id", "=", "jar_user_join.user_id");
 
     const movieInfo = await knex("jar_movie_join")
-      .select("movie.id", "title", "poster_url", "description", "movie.rating as public_rating", "um.rating as user_rating", "year", "run_time", "genres", "mental_vibe", "emotional_vibe", "watched")
+      .select("movie.id", "title", "poster_url as posterUrl", "description", "movie.rating as publicRating", "um.rating as userRating", "year", "run_time as runTime", "genres", "mental_vibe as mentalVibe", "emotional_vibe as emotionalVibe", "watched")
       .where({ jar_id: req.params.jarid })
       .join("movie", "movie.id", "jar_movie_join.movie_id")
       .join(

@@ -21,7 +21,7 @@ const getJars = async (req, res) => {
   const validUser = await isUserValid(userId);
   if (validUser) {
     knex("jar_user_join")
-      .select("jar_id", "name", "creator_id")
+      .select("jar_id as jarId", "name", "creator_id as creatorId")
       .where({ user_id: userId })
       .join("jar", "jar.id", "=", "jar_user_join.jar_id")
       .then((data) => {
