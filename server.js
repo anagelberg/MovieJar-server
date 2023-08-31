@@ -19,7 +19,6 @@ app.use(express.static("public"));
 /* Routes */
 app.use("/jar", jarRoutes);
 app.use("/user", userRoutes);
-// app.use("/user", userRoutes);
 
 /* Home page API */
 app.get("/", (req, res) => {

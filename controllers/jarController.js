@@ -2,6 +2,8 @@ const knex = require("knex")(require("../knexfile"));
 
 const userController = require("./userController");
 
+
+/* Creates a jar */ 
 const createJar = async (req, res) => {
   const creatorId = Number(req.body.creatorId);
   const validUser = await userController.isUserValid(creatorId);
@@ -49,6 +51,7 @@ const removeUser = (req, res) => {
     });
 };
 
+// This will return details for a given jar, including the list of movies associated with it
 const jarDetails = (req, res) => {
   /* *********COMPLICATED CALL***************/
   res.send(

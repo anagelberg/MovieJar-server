@@ -8,7 +8,7 @@ module.exports = [
     rating: 7.4,
     year: 2023,
     run_time: 114,
-    genres: '"Comedy", "Adventure", "Fantasy"',
+    genres: 'Comedy, Adventure, Fantasy',
     imdb_id: "tt1517268",
   },
   {
@@ -20,7 +20,7 @@ module.exports = [
     rating: 6.9,
     year: 2023,
     run_time: 128,
-    genres: '"Action", "Science Fiction", "Adventure"',
+    genres: 'Action, Science Fiction, Adventure',
     imdb_id: "tt9362930",
   },
   {
@@ -32,7 +32,7 @@ module.exports = [
     rating: 8.2,
     year: 2023,
     run_time: 181,
-    genres: '"Drama", "History"',
+    genres: 'Drama, History',
     imdb_id: "tt15398776",
   },
   {
@@ -44,7 +44,7 @@ module.exports = [
     rating: 8.1,
     year: 2023,
     run_time: 145,
-    genres: '"Action", "Science Fiction", "Adventure"',
+    genres: 'Action, Science Fiction, Adventure',
     imdb_id: "tt6791350",
   },
   {
@@ -56,7 +56,7 @@ module.exports = [
     rating: 7.2,
     year: 2023,
     run_time: 122,
-    genres: '"Animation", "Adventure", "Family"',
+    genres: 'Animation, Adventure, Family',
     imdb_id: "tt1245492",
   },
   {
@@ -68,7 +68,7 @@ module.exports = [
     rating: 7.8,
     year: 2023,
     run_time: 130,
-    genres: '"Mystery", "Action", "Adventure"',
+    genres: 'Mystery, Action, Adventure',
     imdb_id: "tt2094116",
   },
   {
@@ -80,7 +80,7 @@ module.exports = [
     rating: 6.4,
     year: 2023,
     run_time: 110,
-    genres: '"Animation", "Comedy", "Family"',
+    genres: 'Animation, Comedy, Family',
     imdb_id: "tt3152592",
   },
   {
@@ -92,7 +92,7 @@ module.exports = [
     rating: 7.3,
     year: 2023,
     run_time: 150,
-    genres: '"Action", "Crime", "Thriller"',
+    genres: 'Action, Crime, Thriller',
     imdb_id: "tt10366206",
   },
 ];
