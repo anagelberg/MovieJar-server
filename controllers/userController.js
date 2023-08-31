@@ -70,9 +70,15 @@ const addUserMovieData = async (req, res) => {
   const validUser = await isUserValid(userId);
   const dataExists = await isUserMovieData(userId, movieId);
   const movieAdded = await movieController.addMovieToDb(movieId);
-  //TODO: add movieAdded validation to make sure movie in the datebase!
-
-  if (validUser && !dataExists) {
+  if (!movieAdded) {
+    res.status(400).send("Problems adding that movie to database. Check to ensure valid TMDB id is being passed.")
+  } else if (dataExists) {
+    res
+      .status(400)
+      .send("User data already exists. Use put command to edit it instead.");
+  } else if (!validUser) {
+    res.status(400).send("Invalid request. That user id is invalid.");
+  } else {
     const newUserMovieData = {
       movie_id: movieId,
       user_id: userId,
@@ -88,13 +94,8 @@ const addUserMovieData = async (req, res) => {
         //TODO: add better validation later to differentiate server vs. req format error
         res.status(400).send("Check input format");
       });
-  } else if (dataExists) {
-    res
-      .status(400)
-      .send("User data already exists. Use put command to edit it instead.");
-  } else {
-    res.status(400).send("Invalid request. That user id is invalid.");
   }
+
 };
 
 module.exports = {
