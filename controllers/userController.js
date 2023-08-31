@@ -103,4 +103,5 @@ module.exports = {
   getJars,
   editUserMovieData,
   addUserMovieData,
+  isUserValid,
 };
