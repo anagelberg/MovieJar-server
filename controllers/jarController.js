@@ -12,9 +12,12 @@ const createJar = async (req, res) => {
       .insert({
         creator_id: creatorId,
         name: req.body.name,
-      })
-      .then(() => {
-        res.send("Successfully created a jar!");
+      }).then(data => {
+        knex("jar_user_join")
+          .insert({ jar_id: data[0], user_id: creatorId })
+          .then(() => {
+            res.send("Successfully created a jar!")
+          })
       })
       .catch((err) => {
         console.log(err);

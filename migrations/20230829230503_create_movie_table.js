@@ -12,7 +12,7 @@ exports.up = function (knex) {
     table.integer("year").notNullable();
     table.integer("run_time").notNullable();
     table.string("genres").notNullable();
-    table.string("imdb_id").notNullable();
+    table.string("imdb_id");
     table.timestamp("updated_at").defaultTo(knex.fn.now());
   });
 };

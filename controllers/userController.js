@@ -72,29 +72,30 @@ const addUserMovieData = async (req, res) => {
   const movieAdded = await movieController.addMovieToDb(movieId);
   if (!movieAdded) {
     res.status(400).send("Problems adding that movie to database. Check to ensure valid TMDB id is being passed.")
-  } else if (dataExists) {
-    res
-      .status(400)
-      .send("User data already exists. Use put command to edit it instead.");
-  } else if (!validUser) {
-    res.status(400).send("Invalid request. That user id is invalid.");
-  } else {
-    const newUserMovieData = {
-      movie_id: movieId,
-      user_id: userId,
-      ...req.body,
-    };
-    knex("user_movie")
-      .insert(newUserMovieData)
-      .then(() => {
-        res.send("Successfully added user data");
-      })
-      .catch((err) => {
-        console.log(err);
-        //TODO: add better validation later to differentiate server vs. req format error
-        res.status(400).send("Check input format");
-      });
-  }
+  } else
+    if (dataExists) {
+      res
+        .status(400)
+        .send("User data already exists. Use put command to edit it instead.");
+    } else if (!validUser) {
+      res.status(400).send("Invalid request. That user id is invalid.");
+    } else {
+      const newUserMovieData = {
+        movie_id: movieId,
+        user_id: userId,
+        ...req.body,
+      };
+      knex("user_movie")
+        .insert(newUserMovieData)
+        .then(() => {
+          res.send("Successfully added user data");
+        })
+        .catch((err) => {
+          console.log(err);
+          //TODO: add better validation later to differentiate server vs. req format error
+          res.status(400).send("Check input format");
+        });
+    }
 
 };
 

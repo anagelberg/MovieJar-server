@@ -2,7 +2,7 @@ module.exports = [
   {
     id: 346698,
     title: "Barbie",
-    poster_url: "/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
     description:
       "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.",
     rating: 7.4,
@@ -14,7 +14,7 @@ module.exports = [
   {
     id: 565770,
     title: "Blue Beetle",
-    poster_url: "/lZ2sOCMCcGaPppaXj0Wiv0S7A08.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/lZ2sOCMCcGaPppaXj0Wiv0S7A08.jpg",
     description:
       "Recent college grad Jaime Reyes returns home full of aspirations for his future, only to find that home is not quite as he left it. As he searches to find his purpose in the world, fate intervenes when Jaime unexpectedly finds himself in possession of an ancient relic of alien biotechnology: the Scarab.",
     rating: 6.9,
@@ -26,7 +26,7 @@ module.exports = [
   {
     id: 872585,
     title: "Oppenheimer",
-    poster_url: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
     description:
       "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.",
     rating: 8.2,
@@ -38,7 +38,7 @@ module.exports = [
   {
     id: 447365,
     title: "Guardians of the Galaxy Vol. 3",
-    poster_url: "/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
     description:
       "The Guardians of the Galaxy are back to embark on another roller-coaster journey across the cosmos. This time, they confront dark secrets about Rocket’s origin while being pursued by powerful adversaries.",
     rating: 8.1,
@@ -50,7 +50,7 @@ module.exports = [
   {
     id: 11430,
     title: "The Lion King 2",
-    poster_url: "/sVJME5R1NmTXtbdnAxYPx7Xa7kr.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/sVJME5R1NmTXtbdnAxYPx7Xa7kr.jpg",
     description:
       "The next chapter in the Pride Lands, following Simba's daughter as she explores her royal heritage and learns valuable lessons about leadership, friendship, and love.",
     rating: 7.2,
@@ -62,7 +62,7 @@ module.exports = [
   {
     id: 297708,
     title: "Sherlock Holmes 3",
-    poster_url: "/vdrLrhkAqyFTG8G1yuSVhMm24Qy.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/vdrLrhkAqyFTG8G1yuSVhMm24Qy.jpg",
     description:
       "Sherlock Holmes and Dr. John Watson return in a new adventure, unraveling an intricate plot involving international criminals, dark secrets, and unexpected betrayals.",
     rating: 7.8,
@@ -74,7 +74,7 @@ module.exports = [
   {
     id: 592896,
     title: "The Secret Life of Pets 3",
-    poster_url: "/eED0ZoSH9lvkIRMnHljVurhh2CX.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/eED0ZoSH9lvkIRMnHljVurhh2CX.jpg",
     description:
       "Max, Gidget, and the rest of the pet gang find themselves in another adventurous outing, learning new lessons about friendship, bravery, and the essence of being a pet.",
     rating: 6.4,
@@ -86,7 +86,7 @@ module.exports = [
   {
     id: 385687,
     title: "Fast & Furious 10",
-    poster_url: "/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
+    poster_url: "https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg",
     description:
       "In their most dangerous mission yet, Dom and his family team up with unexpected allies to face a formidable foe that threatens to unravel the very fabric of their lives.",
     rating: 7.3,

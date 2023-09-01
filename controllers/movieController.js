@@ -19,7 +19,7 @@ const addMovieToDb = async (movieId) => {
       const newMovie = {
         id: movieId,
         title: tmdbData.data.original_title,
-        poster_url: tmdbData.data.poster_path,
+        poster_url: `https://image.tmdb.org/t/p/original${tmdbData.data.poster_path}`,
         description: tmdbData.data.overview,
         rating: tmdbData.data.vote_average,
         year: Number(tmdbData.data.release_date.split("-")[0]),
