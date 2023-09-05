@@ -48,6 +48,7 @@ const editUserMovieData = async (req, res) => {
       .where({ movie_id: movieId, user_id: userId })
       .update(newUserMovieData)
       .then(() => {
+        console.log('updated movie')
         res.send("Successfully updated user data");
       })
       .catch((err) => {
@@ -70,21 +71,35 @@ const addUserMovieData = async (req, res) => {
   const validUser = await isUserValid(userId);
   const dataExists = await isUserMovieData(userId, movieId);
   const movieAdded = await movieController.addMovieToDb(movieId);
+  const newUserMovieData = {
+    movie_id: movieId,
+    user_id: userId,
+    ...req.body,
+  };
   if (!movieAdded) {
     res.status(400).send("Problems adding that movie to database. Check to ensure valid TMDB id is being passed.")
   } else
     if (dataExists) {
-      res
-        .status(400)
-        .send("User data already exists. Use put command to edit it instead.");
+      // For now, edit it instead. TODO come back to this. On front end, build a modal asking the user if they would like to overwrite the existing data for a movie & redirect put command. However, for time sake this will just overwrite it automatically for now. 
+      // res
+      //   .status(400)
+      //   .send("User data already exists. Use put command to edit it instead.");
+      /*TEMP CODE copied from above */
+      knex("user_movie")
+        .where({ movie_id: movieId, user_id: userId })
+        .update(newUserMovieData)
+        .then(() => {
+          res.send("Successfully updated user data");
+        })
+        .catch((err) => {
+          console.log(err);
+          //TODO: add better validation later to differentiate server error vs. req format error
+          res.status(400).send("Check input format");
+        });
+      /* End temp code */
     } else if (!validUser) {
       res.status(400).send("Invalid request. That user id is invalid.");
     } else {
-      const newUserMovieData = {
-        movie_id: movieId,
-        user_id: userId,
-        ...req.body,
-      };
       knex("user_movie")
         .insert(newUserMovieData)
         .then(() => {
