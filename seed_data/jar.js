@@ -1,27 +1,42 @@
 module.exports = [
   {
     id: 1,
-    name: "Crowd Pleasers",
+    name: "Disney",
     creator_id: 1,
   },
   {
     id: 2,
-    name: "Date Night",
+    name: "Roommate watch",
     creator_id: 1,
   },
   {
     id: 3,
-    name: "Girl Night",
+    name: "Crowd Pleasers",
     creator_id: 1,
   },
   {
     id: 4,
-    name: "Solo",
+    name: "Movies with Sam",
     creator_id: 1,
   },
   {
     id: 5,
-    name: "Family Favorites",
+    name: "Date Night",
+    creator_id: 1,
+  },
+  {
+    id: 6,
+    name: "Halloween",
+    creator_id: 1,
+  },
+  {
+    id: 7,
+    name: "Dumb movies for boyz",
+    creator_id: 1,
+  },
+  {
+    id: 8,
+    name: "Solo",
     creator_id: 1,
   },
 ];

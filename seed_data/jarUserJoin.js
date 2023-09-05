@@ -24,4 +24,19 @@ module.exports = [
     user_id: 1,
     jar_id: 5,
   },
+  {
+    id: 6,
+    user_id: 1,
+    jar_id: 6,
+  },
+  {
+    id: 7,
+    user_id: 1,
+    jar_id: 7,
+  },
+  {
+    id: 8,
+    user_id: 1,
+    jar_id: 8,
+  },
 ];
