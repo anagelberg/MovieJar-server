@@ -11,7 +11,7 @@ module.exports = [
   },
   {
     id: 3,
-    name: "Crowd Pleasers",
+    name: "Previously Watched",
     creator_id: 1,
   },
   {
