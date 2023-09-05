@@ -65,7 +65,7 @@ const jarDetails = async (req, res) => {
   if (jarInfo.length === 0) {
     res.status(404).send("Jar not found");
   } else {
-    //Note of future bug: to keep more simple the user data will be the creator of the jar. If more users exist later, come back and change this to be the current user's info instead. 
+    //Note of future bug: to keep more simple the user data will be the creator of the jar. If more users exist later, come back and change this to be the current user's info instead or to default to creator's ratings. 
     const userInfo = await knex("jar_user_join")
       .select("user_id as userId", "name")
       .where({ jar_id: req.params.jarid })

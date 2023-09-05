@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const { TMDB_API_KEY } = process.env;
 
-// Checks if the movie is in db. If it is, returns true. If it isn't, add the movie and return true. Returns false if unable to add the movie with specified Id. Takes the TMDB id to make call.
+// Checks if the movie is in db. If it is, returns true. If it isn't, add the movie and return true. Returns false if unable to add the movie with specified Id and it wasn't found. Takes the TMDB id to make call.
 const addMovieToDb = async (movieId) => {
 
   const moviesInDb = await knex("movie").where({ id: movieId });

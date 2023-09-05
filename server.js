@@ -1,3 +1,4 @@
+/* Dependencies */
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -29,5 +30,3 @@ app.listen(PORT, () => {
   console.log(`listening on ${BACKEND_URL}:${PORT}`);
 });
 
-/* old python scripts */
-/* img head from backdrop url : https://image.tmdb.org/t/p/original/${url} */
