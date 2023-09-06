@@ -21,7 +21,7 @@ const addMovieToDb = async (movieId) => {
         title: tmdbData.data.original_title,
         poster_url: `https://image.tmdb.org/t/p/original${tmdbData.data.poster_path}`,
         description: tmdbData.data.overview,
-        rating: tmdbData.data.vote_average,
+        rating: (tmdbData.data.vote_average) / 2,
         year: Number(tmdbData.data.release_date.split("-")[0]),
         run_time: tmdbData.data.runtime,
         genres: tmdbData.data.genres.map(genre => genre.name).join(", "),
