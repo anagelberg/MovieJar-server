@@ -40,6 +40,7 @@ npm run migrate
 ```
 npm run seed
 ```
+
 6) Run the server:
    
 ```
@@ -51,14 +52,17 @@ npm start
   
 #### POST /jar
 - Creates a new jar
+- returns success / fail status code
 - post body example:
-- ```
+
+ ```
   {
     "name": "My new jar", 
     "creatorId": 1
 } 
 ```
-- returns success / fail status code
+
+
 
 #### GET /jar/:jarid
 - sends detailed information about a given jar, including the movies and users contributing to that jar. 
@@ -78,19 +82,24 @@ npm start
 
 #### PUT /user/:userid/movie/:movieid
 - Edits user data
-- Example put body: 
+- Returns success/fail status codes and corresponding messages
+- Optional additional parameters include custom rating and whether the user has already seen the movie. (Utility not yet in front-end).
+- Example put body:
+- 
 ```
 {
     "mental_vibe": "Neutral",
     "emotional_vibe": "Neutral"
 }
 ```
-- Returns success/fail status codes and corresponding messages
-- Optional additional parameters include custom rating and whether the user has already seen the movie. (Utility not yet in front-end). 
+ 
 
 
 #### POST /user/:userid/movie/:movieid
 - Adds new user data for a movie.
+-  Returns success/failure status codes with messages.
+- Optional additional parameters include custom rating and whether the user has already seen the movie. (Utility not yet in front-end). 
+
 - Body example:
 ```
 {
@@ -98,8 +107,6 @@ npm start
     "emotional_vibe": "Neutral"
 }
 ```
-- Returns success/failure status codes with messages.
-- Optional additional parameters include custom rating and whether the user has already seen the movie. (Utility not yet in front-end). 
 
 
 ## Database schema: 
