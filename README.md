@@ -1,9 +1,12 @@
 # MovieJar-server
 
 This API is deployed here: https://movie-jar-server-93ba0cba5a01.herokuapp.com/
-This is the backend for the the MovieJar app. The frontend is here: https://github.com/anagelberg/MovieJar 
 
-# Install Instructions
+This is the backend for the the MovieJar app. 
+
+The frontend repo is here: https://github.com/anagelberg/MovieJar 
+
+## Install Instructions
 If you would like to run this app locally to store your data: 
 
 1) This app requires a TMDB API Key. Register here.
