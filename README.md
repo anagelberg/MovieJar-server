@@ -9,7 +9,7 @@ The frontend repo is here: https://github.com/anagelberg/MovieJar
 ## Install Instructions
 If you would like to run this app locally to store your data: 
 
-1) This app requires a TMDB API Key. Register here.[Register here](https://developer.themoviedb.org/docs/getting-started)
+1) This app requires a TMDB API Key. [Register here](https://developer.themoviedb.org/docs/getting-started)
 2) Create a new schema (called movie_db in my .env example) in MYSQL Work bench.
 3) Install dependencies:
 
