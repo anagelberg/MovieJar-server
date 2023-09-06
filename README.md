@@ -13,7 +13,8 @@ If you would like to run this app locally to store your data:
 2) Create a database in MYSQL2 Work bench.
 3) Install dependencies:
 
-   ```npm run i
+   ```
+   npm run i
    ```
 5) Create a .env file in the root of the project folder with the following environment variables set to your values:
    
@@ -30,12 +31,14 @@ TMDB_API_KEY=<Your key>
 
 4) Configure the database :
    
-```npm run migrate
+```
+npm run migrate
 ```
 
 5) OPTIONAL: If you would like to demo the app with seed data instead of creating your own in app:
    
-```npm run seed
+```
+npm run seed
 ```
 6) Run the server:
    
