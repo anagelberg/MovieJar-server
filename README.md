@@ -85,7 +85,7 @@ npm start
 - Returns success/fail status codes and corresponding messages
 - Optional additional parameters include custom rating and whether the user has already seen the movie. (Utility not yet in front-end).
 - Example put body:
-- 
+  
 ```
 {
     "mental_vibe": "Neutral",
