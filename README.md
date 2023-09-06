@@ -10,7 +10,7 @@ The frontend repo is here: https://github.com/anagelberg/MovieJar
 If you would like to run this app locally to store your data: 
 
 1) This app requires a TMDB API Key. Register here.
-2) Create a database in MYSQL2 Work bench.
+2) Create a database in MYSQL Work bench.
 3) Install dependencies:
 
    ```
