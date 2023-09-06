@@ -55,11 +55,11 @@ npm start
 - returns success / fail status code
 - post body example:
 
- ```
+```
   {
     "name": "My new jar", 
     "creatorId": 1
-} 
+}
 ```
 
 
