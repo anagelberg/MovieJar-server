@@ -111,4 +111,6 @@ npm start
 
 ## Database schema: 
 The database was configured using 3 many many relationships between users, jars, and movies in order to aid with future expansion of the app. 
+
+
 ![schema](https://github.com/anagelberg/MovieJar-server/assets/62032317/7ddb7a1d-5615-4f14-b234-d8de2b66db76)
