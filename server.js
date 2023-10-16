@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const jarRoutes = require("./routes/jarRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
+const authRoutes = require("./routes/authRoutes.js");
 
 //env
 const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
@@ -20,6 +21,7 @@ app.use(express.static("public"));
 /* Routes */
 app.use("/jar", jarRoutes);
 app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
 
 /* Home page API */
 app.get("/", (req, res) => {
