@@ -14,7 +14,7 @@ If you would like to run this app locally to store your data:
 3) Install dependencies:
 
    ```
-   npm run i
+   npm i
    ```
 5) Create a .env file in the root of the project folder with the following environment variables set to your information:
    
