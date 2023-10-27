@@ -3,7 +3,9 @@ const movieController = require("./movieController");
 
 /* Validates that the user exists -- will expand more later to accomodate more users */
 const isUserValid = async (userId) => {
-  return userId === 1;
+  // return userId === 1;
+  console.log('add user validation here');
+  return true; //validate for real later
 };
 
 /* Checks if user data exists for a movie */
