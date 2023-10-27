@@ -22,11 +22,6 @@ passport.use(
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback'
     }, (accessToken, refreshToken, profile, done) => {
-        // Use knex here to check if the user already exists in the database.
-        // If not, store the new user.
-        // For now, let's leave this empty. We will fill it later.
-        console.log("Checking for user...");
-
 
         knex('user').where({ google_id: profile.id }).first()
             .then(existingUser => {
