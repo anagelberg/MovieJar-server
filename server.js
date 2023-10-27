@@ -14,7 +14,7 @@ const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
 const app = express();
 
 // Middleware
-app.use(cors({ origin: CORS_ORIGIN }));
+app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 app.use(express.static("public"));
 

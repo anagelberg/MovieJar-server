@@ -18,8 +18,6 @@ function isAuthenticated(req, res, next) {
 }
 
 
-
-
 // Setup for sessions
 router.use(session({
     secret: process.env.SECRET_KEY,
@@ -34,6 +32,13 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
+router.get('/status', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.json({ authenticated: true, user: req.user });
+    } else {
+        res.json({ authenticated: false });
+    }
+});
 
 router.get('/protected', isAuthenticated, (req, res) => {
     //works
@@ -46,7 +51,7 @@ router.get('/protected', isAuthenticated, (req, res) => {
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
     // Successful authentication
     console.log("Successfully logged in");
-    res.redirect('http://localhost:3000/'); // Redirect to the frontend webpage
+    res.redirect(process.env.CORS_ORIGIN); // Redirect to the frontend webpage
 
 });
 
