@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const jarRoutes = require("./routes/jarRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
+const authRoutes = require("./routes/authRoutes.js");
 
 //env
 const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
@@ -13,13 +14,14 @@ const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
 const app = express();
 
 // Middleware
-app.use(cors({ origin: CORS_ORIGIN }));
+app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
 /* Routes */
 app.use("/jar", jarRoutes);
 app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
 
 /* Home page API */
 app.get("/", (req, res) => {
