@@ -2,8 +2,6 @@ const router = require("express").Router();
 const passport = require('passport');
 const session = require('express-session');
 require("dotenv").config();
-
-
 require('../passport-setup');
 
 
@@ -29,7 +27,8 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 router.get('/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'email'],
+    prompt: 'select_account'
 }));
 
 router.get('/status', (req, res) => {
@@ -51,11 +50,20 @@ router.get('/protected', isAuthenticated, (req, res) => {
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
     // Successful authentication
     console.log("Successfully logged in");
-    res.redirect(process.env.CORS_ORIGIN); // Redirect to the frontend webpage
+    res.redirect(process.env.CORS_ORIGIN);
 
 });
 
-
+router.get('/logout', (req, res) => {
+    req.logout(function (err) {
+        if (err) {
+            // Handle the error if there is one
+            return next(err);
+        }
+        res.clearCookie('connect.sid');
+        res.redirect(process.env.CORS_ORIGIN);
+    });
+})
 
 
 module.exports = router;
