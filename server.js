@@ -2,6 +2,10 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const router = require("express").Router();
+const passport = require('passport');
+const session = require('express-session');
+require('./passport-setup');
 
 const jarRoutes = require("./routes/jarRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
@@ -17,6 +21,18 @@ const app = express();
 app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 app.use(express.static("public"));
+
+
+// Passport auth
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 /* Routes */
 app.use("/jar", jarRoutes);

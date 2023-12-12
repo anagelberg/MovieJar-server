@@ -3,28 +3,8 @@ const passport = require('passport');
 const session = require('express-session');
 require("dotenv").config();
 require('../passport-setup');
+const { isAuthenticated } = require("../middlewares/authMiddleware");
 
-
-// middleware 
-
-function isAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.status(401).json({ message: 'Not Authorized' });
-    // Or redirect them to the login page: res.redirect('/login');
-}
-
-
-// Setup for sessions
-router.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: false
-}));
-
-router.use(passport.initialize());
-router.use(passport.session());
 
 router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email'],
