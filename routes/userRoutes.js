@@ -4,8 +4,8 @@ const userController = require("../controllers/userController");
 const { isAuthenticated, isRequestingOwnResource } = require("../middlewares/authMiddleware");
 
 router
-  .route("/:userid/jar")
-  .get(userController.getJars);
+  .route("/jar")
+  .get(isAuthenticated, userController.getOwnJars);
 
 router
   .route("/:userid/movie/:movieid")

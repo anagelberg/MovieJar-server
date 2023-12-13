@@ -17,21 +17,19 @@ const isUserMovieData = async (userId, movieId) => {
   return data.length > 0;
 };
 
-/* Get all jars associated with a userId */
-const getJars = async (req, res) => {
-  const userId = Number(req.params.userid);
-  const validUser = await isUserValid(userId);
-  if (validUser) {
-    knex("jar_user_join")
+/* Get all jars associated with the current user */
+const getOwnJars = async (req, res) => {
+  try {
+    const data = await knex("jar_user_join")
       .select("jar_id as jarId", "name", "creator_id as creatorId")
-      .where({ user_id: userId })
+      .where({ user_id: req.user.id })
       .join("jar", "jar.id", "=", "jar_user_join.jar_id")
-      .then((data) => {
-        res.send(data);
-      });
-  } else {
-    res.status(404).send("Invalid user id");
+    res.send(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal Server Error")
   }
+
 };
 
 const editUserMovieData = async (req, res) => {
@@ -117,7 +115,7 @@ const addUserMovieData = async (req, res) => {
 };
 
 module.exports = {
-  getJars,
+  getOwnJars,
   editUserMovieData,
   addUserMovieData,
   isUserValid,
