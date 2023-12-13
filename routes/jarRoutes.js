@@ -8,7 +8,7 @@ const { isJarExists } = require("../middlewares/resourceExistenceMiddleware");
 
 
 router.route("/")
-    .post(jarController.createJar);
+    .post(isAuthenticated, jarController.createJar);
 
 router.route("/:jarid")
     .get(isJarExists,

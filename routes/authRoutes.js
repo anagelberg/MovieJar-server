@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const passport = require('passport');
-const session = require('express-session');
 require("dotenv").config();
 require('../passport-setup');
 const { isAuthenticated } = require("../middlewares/authMiddleware");
@@ -8,7 +7,7 @@ const { isAuthenticated } = require("../middlewares/authMiddleware");
 
 router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email'],
-    prompt: 'select_account'
+    // prompt: 'select_account' add back in production
 }));
 
 router.get('/status', (req, res) => {

@@ -1,7 +1,6 @@
 const knex = require("knex")(require("../knexfile"));
 
 const isJarExists = async (req, res, next) => {
-    console.log("Checking if jar exists");
     try {
         const jar = await knex("jar")
             .select("*")

@@ -1,32 +1,32 @@
 const knex = require("knex")(require("../knexfile"));
 
-const userController = require("./userController");
-
-
 /* Creates a jar */
 const createJar = async (req, res) => {
-  const creatorId = Number(req.body.creatorId);
-  const validUser = await userController.isUserValid(creatorId);
-  if (validUser && req.body.name) {
-    knex("jar")
-      .insert({
-        creator_id: creatorId,
+  if (!req.body.name) {
+    return res.status(400).send("Invalid post body format. Expected 'name'.");
+  }
+  try {
+    const result = await knex.transaction(async trx => {
+      const data = await trx("jar").insert({
+        creator_id: req.user.id,
         name: req.body.name,
-      }).then(data => {
-        knex("jar_user_join")
-          .insert({ jar_id: data[0], user_id: creatorId })
-          .then(() => {
-            res.send("Successfully created a jar!")
-          })
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).send("Internal server error");
       });
-  } else {
-    res.status(400).send("Invalid body format or invalid user (creator) id");
+
+      await trx("jar_user_join").insert({
+        jar_id: data[0],
+        user_id: req.user.id,
+      });
+
+      return data[0];
+    });
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal server error");
   }
 };
+
 
 // This removes a user from a Jar. If the user is the only user contributing to that jar, the jar is also deleted. 
 const removeUser = (req, res) => {
