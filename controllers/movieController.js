@@ -46,6 +46,7 @@ const addMovieToDb = async (movieId) => {
 // Add a movie to a jar. Checks if valid movie & jar, adds jar to db if needed. 
 const addMovieToJar = async (req, res) => {
   const movieAdded = await addMovieToDb(req.params.movieid);
+  console.log('movie added', movieAdded)
   const existingData = await knex("jar_movie_join").where({ jar_id: req.params.jarid, movie_id: req.params.movieid });
   const existingJar = await knex("jar").where({ id: req.params.jarid });
 

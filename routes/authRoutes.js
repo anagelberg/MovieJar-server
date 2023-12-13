@@ -20,16 +20,12 @@ router.get('/status', (req, res) => {
 });
 
 router.get('/protected', isAuthenticated, (req, res) => {
-    //works
     res.json({ message: 'This is a protected route, and you are authenticated!' });
     console.log(req.user); //user object :) 
-    console.log('user id received!', req.user.id)
 });
 
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-    // Successful authentication
-    console.log("Successfully logged in");
     res.redirect(process.env.CORS_ORIGIN);
 
 });

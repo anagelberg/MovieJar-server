@@ -1,11 +1,10 @@
 /* Dependencies */
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
-const router = require("express").Router();
 const passport = require('passport');
 const session = require('express-session');
 require('./passport-setup');
+require("dotenv").config();
 
 const jarRoutes = require("./routes/jarRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
@@ -18,21 +17,22 @@ const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
 const app = express();
 
 // Middleware
-app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
-app.use(express.json());
-app.use(express.static("public"));
 
-
-// Passport auth
 app.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // set to true if using https
+    maxAge: process.env.NODE_ENV === "production" ? Infinity : 24 * 60 * 60 * 1000
+  }
 }));
 
+app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
+app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 /* Routes */
 app.use("/jar", jarRoutes);
