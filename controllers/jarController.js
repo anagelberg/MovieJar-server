@@ -76,8 +76,6 @@ const jarDetails = async (req, res) => {
       "jar_movie_join.movie_id"
     );
 
-  console.log("movie Info", movieInfo)
-
   const resData = {
     id: req.jar.id,
     name: req.jar.name,
