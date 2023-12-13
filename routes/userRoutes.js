@@ -1,15 +1,17 @@
 const router = require("express").Router();
 
 const userController = require("../controllers/userController");
-const { isAuthenticated, isRequestingOwnResource } = require("../middlewares/authMiddleware");
+
+const { isAuthenticated } = require("../middlewares/authMiddleware");
+const { movieInDb } = require("../middlewares/resourceExistenceMiddleware");
 
 router
   .route("/jar")
   .get(isAuthenticated, userController.getOwnJars);
 
 router
-  .route("/:userid/movie/:movieid")
-  .put(isAuthenticated, isRequestingOwnResource, userController.editUserMovieData)
-  .post(isAuthenticated, isRequestingOwnResource, userController.addUserMovieData);
+  .route("/movie/:movieid")
+  .put(isAuthenticated, movieInDb, userController.editUserMovieData)
+  .post(isAuthenticated, movieInDb, userController.addUserMovieData);
 
 module.exports = router;

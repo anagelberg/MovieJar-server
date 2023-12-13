@@ -8,7 +8,7 @@ const isAuthenticated = (req, res, next) => {
             res.status(401).json({ message: 'User not Authenticated. Please log in.' });
         }
     } catch (err) {
-        console.log('error authenticating user', err);
+        console.log(err);
         res.status(500).json({ message: "Internal Server Error" });
     }
 }

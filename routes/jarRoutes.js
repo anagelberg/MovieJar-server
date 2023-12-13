@@ -4,7 +4,7 @@ const movieController = require("../controllers/movieController");
 
 
 const { isAuthenticated, isRequestingOwnResource, isJarContributor } = require("../middlewares/authMiddleware");
-const { isJarExists } = require("../middlewares/resourceExistenceMiddleware");
+const { isJarExists, movieInDb } = require("../middlewares/resourceExistenceMiddleware");
 
 
 router.route("/")
@@ -25,6 +25,7 @@ router.route("/:jarid/movie/:movieid")
         isAuthenticated,
         isJarExists,
         isJarContributor,
+        movieInDb,
         movieController.addMovieToJar)
     .delete(
         isAuthenticated,

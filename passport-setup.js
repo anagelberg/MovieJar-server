@@ -28,7 +28,6 @@ passport.use(
                 if (existingUser) {
                     done(null, existingUser);
                 } else {
-                    console.log(profile);
                     knex('user').insert({
                         google_id: profile.id,
                         google_photo: profile.photos[0]?.value,
