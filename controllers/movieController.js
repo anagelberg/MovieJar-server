@@ -1,35 +1,32 @@
-const knex = require("knex")(require("../knexfile"));
-require("dotenv").config();
+const moviesInJarService = require("../services/moviesInJarService");
 
-// Add a movie to a jar. Checks if valid movie & jar, adds jar to db if needed. 
+// Add a movie to a jar if not already present.
 const addMovieToJar = async (req, res) => {
-  const existingData = await knex("jar_movie_join").where({ jar_id: req.params.jarid, movie_id: req.params.movieid });
+  try {
+    const isMovieInJar = await moviesInJarService.isMovieInJar(req.params.movieid, req.params.jarid)
+    !isMovieInJar && await moviesInJarService.addMovieToJar(req.params.movieid, req.params.jarid)
+    return res.status(200).send("Movie added to jar or already exists.");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Unexpected Server Error Occurred");
+  }
 
-  if (existingData.length > 0) {
-    res.status(400).send("That jar already contains that movie");
-  } else {
-    knex("jar_movie_join").insert({ jar_id: req.params.jarid, movie_id: req.params.movieid }).then(() => {
-      res.send("Movie added to jar");
-    }).catch(err => {
-      res.status(500).send("Error adding movie on server side");
-    })
-  };
 }
 
-
 /* Remove a movie from jar */
-const removeMovieFromJar = (req, res) => {
-  knex("jar_movie_join")
-    .where({ jar_id: req.params.jarid, movie_id: req.params.movieid })
-    .del()
-    .then(numDel => {
-      numDel > 0
-        ? res.send("Movie deleted from jar")
-        : res.status(404).send("Nothing to delete")
-    }).catch(err => {
-      console.log(err);
-      res.status(500).send("Internal error deleting movie from jar");
-    })
+const removeMovieFromJar = async (req, res) => {
+
+  try {
+    const numDel = await moviesInJarService.removeMovieFromJar(req.params.movieid, req.params.jarid);
+    numDel > 0
+      ? res.send("Movie deleted from jar")
+      : res.status(204).send("Nothing to delete")
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Unexpected Server Error Occurred");
+  }
+
 };
 
 
@@ -37,5 +34,4 @@ const removeMovieFromJar = (req, res) => {
 module.exports = {
   addMovieToJar,
   removeMovieFromJar,
-  // addMovieToDb,
 };
