@@ -1,12 +1,11 @@
-const knex = require("knex")(require("../knexfile"));;
-const { getMovieFromDb, addMovieToDb, formatMovieForDb } = require("../utils/movieDbUtils");
-const { fetchMovieFromTmdb } = require("../utils/tmdbUtils");
+// Description: This file contains the middlewares for checking if a resource exists in the database.
+const movieService = require("../services/movieService.js");
+const tmdbService = require("../services/tmdbService.js");
+const jarService = require("../services/jarService.js");
 
 const isJarExists = async (req, res, next) => {
     try {
-        const jar = await knex("jar")
-            .select("*")
-            .where({ id: req.params.jarid });
+        const jar = await jarService.getJar(req.params.jarid)
 
         if (jar.length === 0) {
             return res.status(404).json({ message: "Jar id not found in database" });
@@ -25,17 +24,17 @@ const movieInDb = async (req, res, next) => {
     req.movie = req.params.movieid;
 
     try {
-        const moviesInDb = await getMovieFromDb(req.movie);
+        const moviesInDb = await movieService.getMovieData(req.movie);
 
         if (moviesInDb.length > 0) {
             return next();
         }
 
-        const tmdbData = await fetchMovieFromTmdb(req.movie, process.env.TMDB_API_KEY);
-        const newMovie = formatMovieForDb(tmdbData, req.movie);
+        const tmdbData = await tmdbService.fetchMovieFromTmdb(req.movie, process.env.TMDB_API_KEY);
+        const newMovie = movieService.formatMovieForDb(tmdbData, req.movie);
 
         try {
-            await addMovieToDb(newMovie);
+            await movieService.addMovieData(newMovie);
             return next();
         } catch (err) {
             console.error("Error adding movie to database:", err);

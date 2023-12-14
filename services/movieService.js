@@ -1,10 +1,10 @@
 const knex = require("knex")(require("../knexfile"));;
 
-const getMovieFromDb = async (movieId) => {
+const getMovieData = async (movieId) => {
     return await knex("movie").where({ id: movieId });
 };
 
-const addMovieToDb = async (newMovie) => {
+const addMovieData = async (newMovie) => {
     return await knex("movie").insert(newMovie);
 };
 
@@ -23,7 +23,7 @@ const formatMovieForDb = (tmdbData, movieId) => {
 }
 
 module.exports = {
-    getMovieFromDb,
-    addMovieToDb,
+    getMovieData,
+    addMovieData,
     formatMovieForDb
 }
