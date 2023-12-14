@@ -21,6 +21,12 @@ exports.up = function (knex) {
       .inTable("movie")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
+    table
+      .integer("added_by")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("user")
     table.timestamp("updated_at").defaultTo(knex.fn.now());
   });
 };

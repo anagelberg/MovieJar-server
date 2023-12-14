@@ -12,6 +12,7 @@ exports.up = function (knex) {
       .notNullable()
       .references("id")
       .inTable("user");
+    table.enu("viewing_permission", ["Public", "Private"]);
     table.timestamp("updated_at").defaultTo(knex.fn.now());
   });
 };
