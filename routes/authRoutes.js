@@ -5,7 +5,7 @@ require('../passport-setup');
 
 router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email'],
-    // prompt: 'select_account' add back in production
+    prompt: 'select_account'
 }));
 
 router.get('/status', (req, res) => {
