@@ -27,7 +27,9 @@ app.use(session({
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", // set to true if using https
     sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
-    maxAge: process.env.NODE_ENV === "production" ? Infinity : 24 * 60 * 60 * 1000
+    maxAge: process.env.NODE_ENV === "production" ? Infinity : 24 * 60 * 60 * 1000,
+    path: '/',
+    domain: process.env.NODE_ENV === "production" ? 'moviejar.ca' : undefined
   }
 }));
 
