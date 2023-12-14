@@ -43,7 +43,7 @@ app.use("/auth", authRoutes);
 
 // Enforce HTTPS in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }));
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
 }
 
 /* Home page API */
