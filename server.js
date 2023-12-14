@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const passport = require('passport');
 const session = require('express-session');
+const enforce = require('express-sslify');
 require('./passport-setup');
 require("dotenv").config();
 
@@ -15,6 +16,10 @@ const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
 
 // app
 const app = express();
+
+
+
+
 
 // Middleware
 
@@ -38,6 +43,11 @@ app.use(passport.session());
 app.use("/jar", jarRoutes);
 app.use("/user", userRoutes);
 app.use("/auth", authRoutes);
+
+// Enforce HTTPS in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 
 /* Home page API */
 app.get("/", (req, res) => {
