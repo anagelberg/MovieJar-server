@@ -18,9 +18,6 @@ const { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
 const app = express();
 
 
-
-
-
 // Middleware
 
 app.use(session({
@@ -46,12 +43,12 @@ app.use("/auth", authRoutes);
 
 // Enforce HTTPS in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  app.use(enforce.HTTPS({ trustXForwardedHostHeader: true }));
 }
 
 /* Home page API */
 app.get("/", (req, res) => {
-  res.send("You've reached the server");
+  res.send(`You've reached the ${process.env.NODE_ENV} server`);
 });
 
 app.listen(PORT, () => {
