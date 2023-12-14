@@ -17,7 +17,7 @@ router.get('/status', (req, res) => {
 });
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-    res.redirect(process.env.CORS_ORIGIN);
+    res.redirect(process.env.FRONTEND_URL);
 });
 
 router.get('/logout', (req, res) => {
@@ -26,7 +26,7 @@ router.get('/logout', (req, res) => {
             return next(err);
         }
         res.clearCookie('connect.sid');
-        res.redirect(process.env.CORS_ORIGIN);
+        res.redirect(process.env.FRONTEND_URL);
     });
 })
 

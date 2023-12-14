@@ -20,15 +20,12 @@ passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.NODE_ENV === "production"
-            ? "https://movie-jar-server-93ba0cba5a01.herokuapp.com/auth/google/callback"
-            : `http://localhost:${process.env.PORT}/auth/google/callback`
+        callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`
     }, (accessToken, refreshToken, profile, done) => {
-
         knex('user').where({ google_id: profile.id }).first()
             .then(existingUser => {
                 if (existingUser) {
-                    done(null, existingUser);
+                    done(null, existingUser.id);
                 } else {
                     knex('user').insert({
                         google_id: profile.id,
