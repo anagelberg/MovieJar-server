@@ -1,7 +1,8 @@
 module.exports = [
   {
     id: 1,
+    google_id: "demodemodemo",
     name: "Test User",
-    email: "test@gmail.com",
+    email: "demo@gmail.com",
   },
 ];
