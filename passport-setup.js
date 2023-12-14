@@ -4,7 +4,7 @@ require("dotenv").config();
 const knex = require("knex")(require("./knexfile"));
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user);
 });
 
 passport.deserializeUser((id, done) => {

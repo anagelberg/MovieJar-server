@@ -4,7 +4,7 @@ const moviesInJarService = require("../services/moviesInJarService");
 const addMovieToJar = async (req, res) => {
   try {
     const isMovieInJar = await moviesInJarService.isMovieInJar(req.params.movieid, req.params.jarid)
-    !isMovieInJar && await moviesInJarService.addMovieToJar(req.params.movieid, req.params.jarid)
+    !isMovieInJar && await moviesInJarService.addMovieToJar(req.params.movieid, req.params.jarid, req.user.id)
     return res.status(200).send("Movie added to jar or already exists.");
   } catch (err) {
     console.log(err);

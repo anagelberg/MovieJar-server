@@ -24,6 +24,7 @@ exports.up = function (knex) {
       .inTable("user")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
+    table.text("note").defaultTo(null);
     table.boolean("watched").defaultTo(false);
     table.timestamp("updated_at").defaultTo(knex.fn.now());
   });

@@ -7,8 +7,8 @@ const isMovieInJar = async (movieId, jarId) => {
     return moviesInJar.length > 0;
 }
 
-const addMovieToJar = async (movieId, jarId) => {
-    return await knex("jar_movie_join").insert({ movie_id: movieId, jar_id: jarId });
+const addMovieToJar = async (movieId, jarId, userId) => {
+    return await knex("jar_movie_join").insert({ movie_id: movieId, jar_id: jarId, added_by: userId });
 }
 
 const removeMovieFromJar = async (movieId, jarId) => {
