@@ -47,7 +47,7 @@ app.use(session({
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
     sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
-    maxAge: process.env.NODE_ENV === 24 * 60 * 60 * 1000,
+    maxAge: 24 * 60 * 60 * 1000,
     path: '/', // maybe remove
     domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined //maybe remove
   }
