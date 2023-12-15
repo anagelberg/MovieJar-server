@@ -29,7 +29,7 @@ app.use(session({
     sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
     maxAge: process.env.NODE_ENV === "production" ? Infinity : 24 * 60 * 60 * 1000,
     path: '/',
-    domain: process.env.NODE_ENV === "production" ? 'moviejar.ca' : undefined
+    domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined
   }
 }));
 
