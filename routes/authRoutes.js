@@ -9,9 +9,13 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/status', (req, res) => {
+    console.log("Checking the status... ");
+    console.log("req.sessionID: ", req.sessionID);
     if (req.isAuthenticated()) {
+        console.log("Result returned: Authenticated")
         res.json({ authenticated: true, user: req.user });
     } else {
+        console.log("Result returned: Not authenticated")
         res.json({ authenticated: false });
     }
 });
@@ -37,6 +41,8 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
     // res.cookie(sessionCookieName, sessionCookieValue, sessionCookieOptions);
 
     // console.log("Session cookie manually set");
+
+    console.log("Session Id: ", req.sessionID);
 
     req.session.save(err => {
         if (err) {

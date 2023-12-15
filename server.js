@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 8080;
 
 // app
 const app = express();
-app.enable('trust proxy');
+app.enable('trust proxy'); // needed for heroku deployment
 
 // Redis config. note run 'redis-server' in WSL terminal to start redis server (locally)
 const redisClient = createClient({
@@ -72,11 +72,6 @@ if (process.env.NODE_ENV === 'production') {
 /* Home page API */
 app.get("/", (req, res) => {
   res.send(`You've reached the ${process.env.NODE_ENV} server`);
-});
-
-app.get('/test-cookie', (req, res) => {
-  res.cookie('TestCookie', 'testValue', { maxAge: 900000, httpOnly: true });
-  res.send('Test cookie set');
 });
 
 app.listen(PORT, () => {
