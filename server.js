@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 8080;
 
 // app
 const app = express();
+app.enable('trust proxy');
 
 // Redis config. note run 'redis-server' in WSL terminal to start redis server (locally)
 const redisClient = createClient({
@@ -46,7 +47,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+    sameSite: 'None',
     maxAge: 24 * 60 * 60 * 1000,
     path: '/', // maybe remove
     domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined //maybe remove
