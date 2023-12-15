@@ -73,6 +73,11 @@ app.get("/", (req, res) => {
   res.send(`You've reached the ${process.env.NODE_ENV} server`);
 });
 
+app.get('/test-cookie', (req, res) => {
+  res.cookie('TestCookie', 'testValue', { maxAge: 900000, httpOnly: true });
+  res.send('Test cookie set');
+});
+
 app.listen(PORT, () => {
   console.log(`listening on ${process.env.BACKEND_URL}`);
 });

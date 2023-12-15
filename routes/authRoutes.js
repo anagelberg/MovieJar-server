@@ -18,9 +18,19 @@ router.get('/status', (req, res) => {
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
     console.log("Made it to /google/callback");
-    console.log("Sending cookie to", process.env.FRONTEND_URL)
-    console.log("You are in", process.env.NODE_ENV)
+
+    // Set a test cookie
+    res.cookie('TestCookie', 'testValue', {
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
+        sameSite: 'None', // Necessary for cross-domain cookies
+        domain: process.env.NODE_ENV === 'production' ? '.moviejar.ca' : undefined
+    });
+
+    console.log("Test cookie set");
     console.log("session", req.session);
+    console.log("Redirecting to", process.env.FRONTEND_URL);
     res.redirect(process.env.FRONTEND_URL);
 });
 
