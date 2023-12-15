@@ -4,8 +4,12 @@ const cors = require("cors");
 const passport = require('passport');
 const session = require('express-session');
 const enforce = require('express-sslify');
+const RedisStore = require('connect-redis').default;
+const { createClient } = require('redis')
+
 require('./passport-setup');
 require("dotenv").config();
+
 
 const jarRoutes = require("./routes/jarRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
@@ -16,20 +20,36 @@ const PORT = process.env.PORT || 8080;
 // app
 const app = express();
 
+// Redis config. note run 'redis-server' in WSL terminal to start redis server (locally)
+const redisClient = createClient({
+  url: process.env.REDIS_URL
+});
+
+
+redisClient.connect().catch(console.error)
+redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.on('connect', function () {
+  console.log('Connected to redis successfully');
+});
+
+const redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "prefix:",
+});
 
 // Middleware
-
 app.use(session({
+  store: redisStore,
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // set to true if using https
-    sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
+    secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
     maxAge: process.env.NODE_ENV === "production" ? Infinity : 24 * 60 * 60 * 1000,
-    path: '/',
-    domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined
+    path: '/', // maybe remove
+    domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined //maybe remove
   }
 }));
 
