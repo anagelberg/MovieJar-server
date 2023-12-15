@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 8080;
 // app
 const app = express();
 app.enable('trust proxy'); // needed for heroku deployment
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 // Redis config. note run 'redis-server' in WSL terminal to start redis server (locally)
 const redisClient = createClient({
@@ -52,9 +53,8 @@ app.use(session({
     path: '/', // maybe remove
     domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined //maybe remove
   }
-}));
+}))
 
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
