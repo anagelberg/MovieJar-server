@@ -20,6 +20,7 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
     console.log("Made it to /google/callback");
     console.log("Sending cookie to", process.env.FRONTEND_URL)
     console.log("You are in", process.env.NODE_ENV)
+    console.log("session", req.session);
     res.redirect(process.env.FRONTEND_URL);
 });
 
