@@ -10,7 +10,6 @@ const { createClient } = require('redis')
 require('./passport-setup');
 require("dotenv").config();
 
-
 const jarRoutes = require("./routes/jarRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
 const authRoutes = require("./routes/authRoutes.js");
@@ -48,10 +47,10 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-    sameSite: 'None',
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : undefined,
     maxAge: 24 * 60 * 60 * 1000,
-    path: '/', // maybe remove
-    domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined //maybe remove
+    path: '/',
+    domain: process.env.NODE_ENV === "production" ? '.moviejar.ca' : undefined
   }
 }))
 
