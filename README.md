@@ -1,10 +1,6 @@
 # MovieJar-server
 
-This API is deployed here: https://movie-jar-server-93ba0cba5a01.herokuapp.com/
-
-This is the backend for the the MovieJar app.
-
-The frontend repo is here: https://github.com/anagelberg/MovieJar
+This is the backend for the MovieJar app, deployed at https://api.moviejar.ca/. The frontend repo is here: https://github.com/anagelberg/MovieJar
 
 ## Install Instructions
 
