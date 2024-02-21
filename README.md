@@ -4,7 +4,7 @@ This is the backend for the MovieJar app, deployed at https://api.moviejar.ca/. 
 
 ## Install Instructions
 
-If you would like to run this app locally to store your data:
+If you would like to run this app locally to store your data, For now I recommend using the demo branch of this repo as it isn't configured with google oAuth and will be easier to set up. If you choose to clone the main branch, note this application requires a running redis server for session management as well as having google oAuth keys configured. 
 
 1. This app requires a TMDB API Key. [Register here](https://developer.themoviedb.org/docs/getting-started)
 2. Create a new schema (called movie_db in my .env example) in MYSQL Work bench.
@@ -26,6 +26,17 @@ DB_PASSWORD=rootroot
 DB_DATABASE=movie_db
 TMDB_API_KEY=<Your key>
 ```
+
+If using the main branch, also add the following to your .env: 
+
+```
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+SECRET_KEY=<a random secret you keep>
+NODE_ENV=development
+REDIS_URL=redis://localhost:<your redis port>
+```
+
 
 4. Configure the database :
 
@@ -114,6 +125,7 @@ npm start
 
 ## Database schema:
 
-The database was configured using 3 many many relationships between users, jars, and movies in order to aid with future expansion of the app.
+The database was configured as following to aid in future expansion of the application: 
 
-![schema](https://github.com/anagelberg/MovieJar-server/assets/62032317/7ddb7a1d-5615-4f14-b234-d8de2b66db76)
+![database-02-20-2024](https://github.com/anagelberg/MovieJar-server/assets/62032317/893c50bb-a18f-4237-9263-566038afdadb)
+
